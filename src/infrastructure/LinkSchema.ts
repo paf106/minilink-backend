@@ -3,9 +3,9 @@ import * as mongoose from 'mongoose';
 const linkSchema = new mongoose.Schema(
     {
 
-        url: { type: String, required: true },
-        shortCode: { type: String, required: true, unique: true },
-        createdAt: { type: Date, default: Date.now },
+        url: {type: String, required: true},
+        shortCode: {type: String, required: true, unique: true},
+        createdAt: {type: Date, default: Date.now},
     },
     {
         timestamps: true,

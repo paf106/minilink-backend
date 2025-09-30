@@ -1,19 +1,21 @@
-import { expect, test, beforeEach} from "bun:test";
-import { generateRandomKeyUseCase } from "../../src/application/generateRandomKeyUseCase.ts";
+import {beforeAll, beforeEach, expect, test} from "bun:test";
+import {GenerateRandomKeyUseCase} from "../../src/application/GenerateRandomKeyUseCase.ts";
 
 let key: string;
+let generateRandomKeyUseCase: GenerateRandomKeyUseCase
+
+beforeAll(() => {
+    generateRandomKeyUseCase = new GenerateRandomKeyUseCase()
+})
 
 beforeEach(() => {
-    // Configuración inicial si es necesaria
-    key = generateRandomKeyUseCase()
+    key = generateRandomKeyUseCase.execute()
 })
 
 test("Key to be 6 characters long", () => {
-    //const key = generateRandomKeyUseCase();
     expect(key.length).toBe(6);
 });
 
 test("Key must be a string", () => {
-   // const key = generateRandomKeyUseCase();
     expect(typeof key).toBe("string");
 })

@@ -1,36 +1,18 @@
-import express, {Application, Request, Response} from "express";
+import express, {Application} from "express";
 import mongoose from "mongoose";
-import {LinkRepositoryImpl} from "./infrastructure/LinkRepositoryImpl.ts";
-import {generateRandomKeyUseCase} from "./application/generateRandomKeyUseCase.ts";
+import {LinkController} from "./infrastructure/LinkController.ts";
+
 
 const app: Application = express()
 const PORT = process.env.PORT || 3000
 
-const linkRepository = new LinkRepositoryImpl()
+const linkController = new LinkController()
 
 app.use(express.json())
 
-app.post("/shorten", async (req: Request, res: Response) => {
+app.post("/shorten", linkController.saveLink)
 
-    const {url} = req.body
-    const shortCode = generateRandomKeyUseCase()
-
-    const a = await linkRepository.saveLink(shortCode,url)
-
-    return res.json({a})
-})
-
-app.post("/extend", async (req: Request, res: Response) => {
-
-    const {shortCode} = req.body
-
-    if (shortCode) {
-        const originalUrl = await linkRepository.getLink(shortCode)
-        return res.json(originalUrl)
-    }
-    return res.status(404).json({message: "Link not found"})
-
-})
+app.post("/extend", linkController.getLink)
 
 app.disable("x-powered-by")
 

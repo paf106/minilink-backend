@@ -1,5 +1,5 @@
 export interface Link {
-    shortCode: string | null;
-    originalUrl: string | null;
+    shortCode: string;
+    originalUrl: string;
     createdAt: Date;
 }
