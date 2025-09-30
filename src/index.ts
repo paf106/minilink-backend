@@ -1,4 +1,5 @@
 import express, {Application} from "express";
+import cors from "cors"
 import mongoose from "mongoose";
 import {LinkController} from "./infrastructure/LinkController.ts";
 
@@ -9,6 +10,7 @@ const PORT = process.env.PORT || 3000
 const linkController = new LinkController()
 
 app.use(express.json())
+app.use(cors())
 
 app.post("/shorten", linkController.saveLink)
 
