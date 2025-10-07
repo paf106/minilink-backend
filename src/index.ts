@@ -18,7 +18,14 @@ app.post("/extend", linkController.getLink)
 
 app.disable("x-powered-by")
 
-await mongoose.connect('mongodb://127.0.0.1:27017/minilink');
+// await mongoose.connect('mongodb://127.0.0.1:27017/minilink');
+try {
+    await mongoose.connect(process.env.MONGODB_URI);
+} catch (e) {
+    console.log("❌ Database connection error", e)
+}
+
+console.log(`🚀 Runtime environment: ${process.env.NODE_ENV}`);
 
 app.listen(PORT, (): void => {
     console.log(`Server is running on port ${PORT}`);

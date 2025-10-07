@@ -5,9 +5,10 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "dev": "bun --watch run src/index.ts",
+    "dev": "NODE_ENV=development bun --watch run src/index.ts",
+    "production": "NODE_ENV=production bun run src/index.ts",
     "build": "bun build src/index.ts --outdir dist --target bun",
-    "start": "bun run src/index.js"
+    "start": "NODE_ENV=production bun run src/index.js"
   },
   "devDependencies": {
     "@types/bun": "latest",
