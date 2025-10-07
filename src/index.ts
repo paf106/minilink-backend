@@ -20,7 +20,7 @@ app.disable("x-powered-by")
 
 // await mongoose.connect('mongodb://127.0.0.1:27017/minilink');
 try {
-    await mongoose.connect(process.env.MONGODB_URI);
+    await mongoose.connect(`${process.env.MONGODB_URI}`);
 } catch (e) {
     console.log("❌ Database connection error", e)
 }
