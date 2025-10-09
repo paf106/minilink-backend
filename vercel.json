@@ -1,13 +1,17 @@
 {
-  "functions": {
-    "src/index.ts": {
-      "runtime": "@vercel/node@3.0.12"
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "~/.bun/bin/bun run build",
+  "version": 2,
+  "builds": [
+    {
+      "src": "dist/index.js",
+      "use": "@vercel/node"
     }
-  },
+  ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "src/index.ts"
+      "dest": "dist/index.js"
     }
   ]
 }
