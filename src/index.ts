@@ -30,3 +30,4 @@ console.log(`🚀 Runtime environment: ${process.env.NODE_ENV}`);
 app.listen(PORT, (): void => {
     console.log(`Server is running on port ${PORT}`);
 })
+export default app;
